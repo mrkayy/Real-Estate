@@ -14,6 +14,7 @@ class EstateTileWidget extends StatelessWidget {
     required this.image,
     required this.title,
     required this.delay,
+    required this.animate,
     this.width,
     this.padding,
   });
@@ -23,6 +24,7 @@ class EstateTileWidget extends StatelessWidget {
   final String image;
   final String title;
   final Duration delay;
+  final bool animate;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,6 +39,7 @@ class EstateTileWidget extends StatelessWidget {
       child: Align(
         alignment: Alignment.bottomCenter,
         child: ClipRRect(
+          borderRadius: BorderRadius.circular(60.sp),
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
             child: Container(
@@ -68,7 +71,7 @@ class EstateTileWidget extends StatelessWidget {
                       padding: EdgeInsets.all(13.sp),
                       decoration: const BoxDecoration(
                           shape: BoxShape.circle,
-                          color: AppColors.primaryAccent,
+                          color: AppColors.primary50,
                           boxShadow: [
                             BoxShadow(
                                 color: AppColors.gray50,
@@ -87,7 +90,7 @@ class EstateTileWidget extends StatelessWidget {
           ),
         ),
       )
-          .animate(delay: delay)
+          .animate(delay: delay, target: animate ? 1 : 0)
           .scaleX(alignment: Alignment.centerLeft, begin: 0, end: 1),
     );
   }

@@ -38,7 +38,7 @@ class _HomeSliverPageState extends State<HomeSliverPage> {
   final ScrollController sliverController = ScrollController();
   final _duration = 2.seconds;
   final double _rentoffers = 176;
-  // bool animateNext = false;
+  bool animateNext = false;
 
   final List<Estates> estates = [
     Estates(
@@ -320,9 +320,15 @@ class _HomeSliverPageState extends State<HomeSliverPage> {
                               .animate(
                                   delay: const Duration(milliseconds: 800),
                                   onComplete: (cc) {
-                                    sliverController.animateTo(225.1,
-                                        duration: 1.7.seconds,
-                                        curve: Curves.easeInOut);
+                                    sliverController
+                                        .animateTo(
+                                            MediaQuery.of(context).size.height *
+                                                0.3275,
+                                            duration: 1.7.seconds,
+                                            curve: Curves.easeInOut)
+                                        .whenComplete(() => setState(() {
+                                              animateNext = true;
+                                            }));
                                   })
                               .scale(duration: _duration),
                         ),
@@ -343,6 +349,7 @@ class _HomeSliverPageState extends State<HomeSliverPage> {
                     spacing: 6.sp,
                     children: estates
                         .map((e) => EstateTileWidget(
+                          animate: animateNext,
                               image: e.image,
                               title: e.title,
                               delay: e.delay,

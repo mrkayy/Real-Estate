@@ -95,7 +95,7 @@ class _DashboardPageState extends State<DashboardPage>
               ),
             ).animate(autoPlay: true, delay: const Duration(seconds: 2)).slideY(
                 curve: Curves.easeInOut,
-                duration: 3.1.seconds,
+                duration: 7.6.seconds,
                 end: 0.0,
                 begin: 2.0),
           ),
